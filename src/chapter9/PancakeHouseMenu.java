@@ -1,6 +1,7 @@
 package chapter9;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * FileName: PancakeHouseMenu.java
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Authors: wangbiwen<wangbiwen@xiaomi.com>
  * Date: 16-11-4
  */
-public class PancakeHouseMenu {
+public class PancakeHouseMenu implements Menu {
     ArrayList menuItems;
 
     public PancakeHouseMenu() {
@@ -26,6 +27,7 @@ public class PancakeHouseMenu {
 //        return menuItems;
 //    }
     public Iterator createIterator() {
-        return new PancakeHouseMenuIterator(menuItems);
+//        return new PancakeHouseMenuIterator(menuItems);
+        return menuItems.iterator();
     }
 }

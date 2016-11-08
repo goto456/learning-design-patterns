@@ -1,6 +1,5 @@
 package chapter9;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Iterator;
  * Authors: wangbiwen<wangbiwen@xiaomi.com>
  * Date: 16-11-4
  */
-public class DinerMenu {
+public class DinerMenu implements Menu {
 
     private static final int MAX_ITEMS = 6;
     private int numberOfItems = 0;
@@ -33,7 +32,7 @@ public class DinerMenu {
     //    public MenuItem[] getMenuItems() {
 //        return menuItems;
 //    }
-    public chapter9.Iterator createIterator() {
+    public Iterator createIterator() {
         return new DinerMenuIterator(menuItems);
     }
 }

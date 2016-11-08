@@ -1,6 +1,7 @@
 package chapter9;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * FileName: PancakeHouseMenuIterator.java
@@ -28,5 +29,10 @@ public class PancakeHouseMenuIterator implements Iterator {
     @Override
     public Object next() {
         return menuItems.get(position++);
+    }
+
+    @Override
+    public void remove() {
+
     }
 }
