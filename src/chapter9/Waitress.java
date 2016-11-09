@@ -1,5 +1,7 @@
 package chapter9;
 
+import java.util.*;
+
 /**
  * FileName: Waitress.java
  * Description:
@@ -11,17 +13,21 @@ public class Waitress {
 //    DinerMenu dinerMenu;
     Menu pancakeHouseMenu;
     Menu dinerMenu;
+    Menu cafeMenu;
 
-    public Waitress(Menu pancakeHouseMenu, Menu dinerMenu) {
+    public Waitress(Menu pancakeHouseMenu, Menu dinerMenu, Menu cafeMenu) {
         this.pancakeHouseMenu = pancakeHouseMenu;
         this.dinerMenu = dinerMenu;
+        this.cafeMenu = cafeMenu;
     }
 
     public void printMenu() {
         java.util.Iterator pancakeIterator = pancakeHouseMenu.createIterator();
         java.util.Iterator dinerIterator = dinerMenu.createIterator();
+        java.util.Iterator cafeIterator = cafeMenu.createIterator();
         printMenu(pancakeIterator);
         printMenu(dinerIterator);
+        printMenu(cafeIterator);
     }
 
     private void printMenu(java.util.Iterator iterator) {

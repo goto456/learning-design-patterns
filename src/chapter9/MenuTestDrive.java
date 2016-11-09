@@ -8,10 +8,11 @@ package chapter9;
  */
 public class MenuTestDrive {
     public static void main(String[] args) {
-        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
-        DinerMenu dinerMenu = new DinerMenu();
+        Menu pancakeHouseMenu = new PancakeHouseMenu();
+        Menu dinerMenu = new DinerMenu();
+        Menu cafeMenu = new CafeMenu();
 
-        Waitress waitress = new Waitress(pancakeHouseMenu, dinerMenu);
+        Waitress waitress = new Waitress(pancakeHouseMenu, dinerMenu, cafeMenu);
         waitress.printMenu();
     }
 }
