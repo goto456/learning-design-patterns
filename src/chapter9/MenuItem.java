@@ -6,7 +6,7 @@ package chapter9;
  * Authors: wangbiwen<wangbiwen@xiaomi.com>
  * Date: 16-11-4
  */
-public class MenuItem {
+public class MenuItem extends MenuComponent {
     private String name;
     private String description;
     private boolean vegetarian;
@@ -33,5 +33,15 @@ public class MenuItem {
 
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public void print() {
+        System.out.print(" " + getName());
+        if (isVegetarian()) {
+            System.out.print("(v)");
+        }
+        System.out.println(", " + getPrice());
+        System.out.println("     --" + getDescription());
     }
 }
