@@ -1,5 +1,8 @@
 package chapter9;
 
+import java.util.*;
+import java.util.Iterator;
+
 /**
  * FileName: MenuItem.java
  * Description:
@@ -43,5 +46,10 @@ public class MenuItem extends MenuComponent {
         }
         System.out.println(", " + getPrice());
         System.out.println("     --" + getDescription());
+    }
+
+    @Override
+    public Iterator createIterator() {
+        return new NullIterator();
     }
 }

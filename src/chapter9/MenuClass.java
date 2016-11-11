@@ -1,6 +1,8 @@
 package chapter9;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * FileName: MenuClass.java
@@ -54,5 +56,10 @@ public class MenuClass extends MenuComponent {
             MenuComponent menuComponent = (MenuComponent) iterator.next();
             menuComponent.print();
         }
+    }
+
+    @Override
+    public Iterator createIterator() {
+        return new CompositeIterator(menuComponents.iterator());
     }
 }

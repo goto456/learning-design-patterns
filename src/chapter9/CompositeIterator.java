@@ -22,16 +22,31 @@ public class CompositeIterator implements java.util.Iterator {
             return false;
         } else {
             Iterator iterator = stack.peek();
+            if (iterator.hasNext()) {
+                return true;
+            } else {
+                stack.pop();
+                return hasNext();
+            }
         }
     }
 
     @Override
     public Object next() {
-        return null;
+        if (hasNext()) {
+            Iterator iterator = stack.peek();
+            MenuComponent menuComponent = (MenuComponent) iterator.next();
+            if (menuComponent instanceof MenuClass) {
+                stack.push(menuComponent.createIterator());
+            }
+            return menuComponent;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void remove() {
-
+        throw new UnsupportedOperationException();
     }
 }
