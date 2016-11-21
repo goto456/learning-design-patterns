@@ -1,5 +1,10 @@
 package chapter11;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 /**
  * FileName: GumballMonitorTestDrive.java
  * Description:
@@ -8,16 +13,30 @@ package chapter11;
  */
 public class GumballMonitorTestDrive {
     public static void main(String[] args) {
-        int count = 0;
-        if (args.length < 2) {
-            System.out.println("GumballMachine<name> <inventory>");
-            System.exit(1);
+        String[] locations = {
+                "rmi://santafe.mightygumball.com/gumballmachine",
+                "rmi://boulder.mightygumball.com/gumballmachine",
+                "rmi://seattle.mightygumball.com/gumballmachine"
+        };
+
+        GumballMonitor[] monitors = new GumballMonitor[locations.length];
+
+        for (int i = 0; i < locations.length; i++) {
+            try {
+                GumballMachineRemote machine = (GumballMachineRemote) Naming.lookup(locations[i]);
+                monitors[i] = new GumballMonitor(machine);
+                System.out.println(monitors[i]);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
 
-        count = Integer.parseInt(args[1]);
-        GumballMachine gumballMachine = new GumballMachine(args[0], count);
-        GumballMonitor monitor = new GumballMonitor(gumballMachine);
-
-        monitor.report();
+        for (GumballMonitor monitor : monitors) {
+            monitor.report();
+        }
     }
 }

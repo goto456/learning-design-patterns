@@ -1,12 +1,15 @@
 package chapter11;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 /**
  * FileName: GumballMachine.java
  * Description:
  * Authors: wangbiwen<wangbiwen@xiaomi.com>
  * Date: 16-11-14
  */
-public class GumballMachine {
+public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote {
     private State soldOutState;
     private State noQuarterState;
     private State hasQuarterState;
@@ -17,7 +20,7 @@ public class GumballMachine {
     private int count = 0;
     private String location;
 
-    public GumballMachine(String location, int numberGumballs) {
+    public GumballMachine(String location, int numberGumballs) throws RemoteException {
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);

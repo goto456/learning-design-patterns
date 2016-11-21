@@ -1,5 +1,9 @@
 package chapter11;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 /**
  * FileName: GumballMachineTestDrive.java
  * Description:
@@ -8,20 +12,24 @@ package chapter11;
  */
 public class GumballMachineTestDrive {
     public static void main(String[] args) {
-        GumballMachine gumballMachine = new GumballMachine("Beijing", 5);
+        GumballMachineRemote gumballMachine = null;
+        int count;
+        if (args.length < 2) {
+            System.out.println("GumballMachine <name> <inventory>");
+            System.exit(1);
+        }
 
-        System.out.println(gumballMachine);
+        try {
+            count = Integer.parseInt(args[1]);
 
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
+            gumballMachine = new GumballMachine(args[0], count);
 
-        System.out.println(gumballMachine);
+            Naming.rebind("//" + args[0] + "/gumballmachine", gumballMachine);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuarter();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
     }
 }
