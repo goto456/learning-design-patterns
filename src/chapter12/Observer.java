@@ -7,4 +7,5 @@ package chapter12;
  * Date: 16-11-23
  */
 public interface Observer {
+    public void update(Quackable duck);
 }

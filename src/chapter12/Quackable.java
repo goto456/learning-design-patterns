@@ -6,6 +6,6 @@ package chapter12;
  * Authors: wangbiwen
  * Date: 16-11-23
  */
-public interface Quackable extends QuackObservable {
+public interface Quackable {
     public void quack();
 }
